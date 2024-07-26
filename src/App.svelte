@@ -1,6 +1,6 @@
 <script>
 import Header from "./Components/Header.svelte";
-import ProductDisplay from "./Components/ProductDisplay.svelte";
+import ProductDisplay from "./Pages/ProductDisplay.svelte";
 </script>
 
 <main>

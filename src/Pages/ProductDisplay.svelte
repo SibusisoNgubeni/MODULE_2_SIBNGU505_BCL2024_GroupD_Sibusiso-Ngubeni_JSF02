@@ -1,4 +1,5 @@
 <script>
+    import Sorting from '../Components/Sorting.svelte';
     import { onMount } from 'svelte';
   
     let data = null;
@@ -27,7 +28,7 @@
     {:else if error}
       <p>Error: {error}</p>
     {:else}
-     
+     <Sorting/>
     <div class="product-list">
         {#each data as product}
         <div class="product-card">
