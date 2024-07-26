@@ -19,22 +19,28 @@
 <style>
  
  .container{
-    background-color: #cc5454;
+    background-color: #87b4db;
     height: 72px;
     border-radius: 10px;
+    padding: 5px;
  }
 
  .logo{
     height: 60px;
     width: 100px;
-    margin-left: 20px;
+    margin-left: 30px;
  }
 
  .logo-text{
-    font-size: 40px;
+    color: rgb(56, 97, 131);
+    font-size: 30px;
     font-weight: 600;
-    margin-left: 10px;
-    height: 10px;
+    margin-left: 20px;
+ }
+
+ 
+ a{
+    text-decoration: none;
  }
     
 </style>
