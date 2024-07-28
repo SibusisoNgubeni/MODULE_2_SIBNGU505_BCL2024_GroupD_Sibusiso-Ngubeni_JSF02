@@ -4,15 +4,13 @@
 </script>
 
 <main>
-<nav class="container">
-    <div>
-        <a href="/">
-           <img src="./src/assets/online-shop.png" class="logo" alt="Flowbite Logo">
+   <nav class="container">
+      <div>
+           <img src="../src/assets/online-shop.png" class="logo" alt="Flowbite Logo">
            <span class="logo-text" >SwiftCart</span>
-        </a>
-   </div>
+      </div>
 
-</nav>
+   </nav>
 
 </main>
 
@@ -37,10 +35,5 @@
     font-weight: 600;
     margin-left: 20px;
  }
-
- 
- a{
-    text-decoration: none;
- }
-    
+  
 </style>

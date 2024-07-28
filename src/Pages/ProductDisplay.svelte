@@ -1,4 +1,6 @@
 <script>
+  
+  import LoadingState from '../Components/LoadingState.svelte';
     import Sorting from '../Components/Sorting.svelte';
     import { onMount } from 'svelte';
   
@@ -17,26 +19,30 @@
       } catch (err) {
         error = err.message || 'An error occurred';
       } finally {
+        const hideLoadingTimeout = setTimeout(() => {
         loading = false;
+      }, 2500);
       }
     });
   </script>
   
   <main>
     {#if loading}
-      <p>Loading...</p>
+      <LoadingState/>
     {:else if error}
       <p>Error: {error}</p>
     {:else}
      <Sorting/>
     <div class="product-list">
         {#each data as product}
-        <div class="product-card">
+       
+         <div class="product-card">
           <div class="product-title">{product.title}</div>
           <div class="product-image"><img src="{product.image}" alt="product" class="product-image"/></div>
           <div class="product-price">$ {product.price}</div>
           <div class="product-category">{product.category}</div>
         </div>
+      
         {/each}
     </div>
       
