@@ -1,8 +1,8 @@
 <script>
+  import { Link } from 'svelte-routing';
 
-import LoadingState from '../Components/LoadingState.svelte';
 
-
+    import LoadingState from '../Components/LoadingState.svelte';
     import { onMount } from 'svelte';
   
     let data = null;
@@ -55,6 +55,7 @@ import LoadingState from '../Components/LoadingState.svelte';
 
       
     {/if}
+    <Link to="/">Bac to products</Link>
 </main>
   
 <style>

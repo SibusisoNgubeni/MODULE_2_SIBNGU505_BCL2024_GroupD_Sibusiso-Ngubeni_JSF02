@@ -1,8 +1,10 @@
 <script>
-  
+    
+    import { Link } from 'svelte-routing';
     import LoadingState from '../Components/LoadingState.svelte';
     import Sorting from '../Components/Sorting.svelte';
     import { onMount } from 'svelte';
+    
    
   
     let data = null;
@@ -27,6 +29,8 @@
     });
 
     
+
+    
   </script>
   
   <main>
@@ -38,14 +42,15 @@
      <Sorting/>
     <div class="product-list">
         {#each data as product}
-       
+       <Link to="/1">
          <div class="product-card">
           <div class="product-title">{product.title}</div>
           <div class="product-image"><img src="{product.image}" alt="product" class="product-image"/></div>
           <div class="product-price">$ {product.price}</div>
           <div class="product-category">{product.category}</div>
         </div>
-      
+      </Link>
+    
         {/each}
     </div>
       
