@@ -1,8 +1,9 @@
 <script>
   
-  import LoadingState from '../Components/LoadingState.svelte';
+    import LoadingState from '../Components/LoadingState.svelte';
     import Sorting from '../Components/Sorting.svelte';
     import { onMount } from 'svelte';
+   
   
     let data = null;
     let loading = true;
@@ -19,11 +20,13 @@
       } catch (err) {
         error = err.message || 'An error occurred';
       } finally {
-        const hideLoadingTimeout = setTimeout(() => {
+        const LoadingTimeout = setTimeout(() => {
         loading = false;
       }, 2500);
       }
     });
+
+    
   </script>
   
   <main>

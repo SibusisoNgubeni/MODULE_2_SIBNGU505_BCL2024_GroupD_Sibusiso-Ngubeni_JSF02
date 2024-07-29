@@ -1,18 +1,16 @@
 <script>
-
-  import Header from './Components/Header.svelte';
-  import DetailedProductView from './Pages/DetailedProductView.svelte';
+  import Header from "./Components/Header.svelte";
+  import ProductDisplay from "./Pages/ProductDisplay.svelte";
+ 
 </script>
 
 <main>
-  
-    <Header/>
-    <DetailedProductView />
-    
+  <Header/>
+  <ProductDisplay/>
   
 </main>
+
 
 <style>
  
 </style>
-z

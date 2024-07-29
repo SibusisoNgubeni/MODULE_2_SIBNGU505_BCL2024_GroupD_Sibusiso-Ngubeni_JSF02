@@ -68,7 +68,7 @@ import LoadingState from '../Components/LoadingState.svelte';
         border: 1px solid black;
         border-radius: 10px;
         width: 500px;
-        height: 500px; /* Adjusted from 7000px */
+        height: 500px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s;
         flex-direction: column;
