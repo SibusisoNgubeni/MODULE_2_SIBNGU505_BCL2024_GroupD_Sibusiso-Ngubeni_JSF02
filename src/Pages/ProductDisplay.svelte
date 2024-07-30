@@ -9,18 +9,21 @@
   let filteredProducts = [];
   let loading = true;
   let error = null;
+  let currentCategory = '';
+  let sortOption = '';
 
   async function fetchProducts(category = '') {
       const url = category
           ? `https://fakestoreapi.com/products/category/${category}`
           : 'https://fakestoreapi.com/products';
+
       try {
           const response = await fetch(url);
           if (!response.ok) {
               throw new Error('Failed to fetch data');
           }
           products = await response.json();
-          filteredProducts = products;
+          applyFilters();
       } catch (err) {
           error = err.message || 'An error occurred';
       } finally {
@@ -28,9 +31,32 @@
       }
   }
 
+  function applyFilters() {
+      let filtered = [...products];
+
+      if (sortOption === 'asc') {
+          filtered.sort((a, b) => a.price - b.price);
+      } else if (sortOption === 'desc') {
+          filtered.sort((a, b) => b.price - a.price);
+      }
+
+      filteredProducts = filtered;
+  }
+
   function handleCategoryChange(event) {
-      const category = event.detail;
-      fetchProducts(category);
+      currentCategory = event.detail;
+      fetchProducts(currentCategory);
+  }
+
+  function handleSortChange(event) {
+      sortOption = event.detail;
+      applyFilters();
+  }
+
+  function handleReset() {
+      currentCategory = '';
+      sortOption = '';
+      fetchProducts(); 
   }
 
   onMount(() => fetchProducts());
@@ -42,7 +68,7 @@
   {:else if error}
       <p>Error: {error}</p>
   {:else}
-      <Sorting />
+      <Sorting on:sortChange={handleSortChange} on:reset={handleReset} />
       <CategoryFilter on:categoryChange={handleCategoryChange} />
       <div class="product-list">
           {#each filteredProducts as product}
