@@ -1,4 +1,5 @@
 #**Svelte E-Commerce Project**
+
 ##**Overview**
 
 A dynamic e-commerce web application that i built with Svelte. The application fetches data from an API and incorporates user interactions, such as selecting categories, sorting products, and viewing detailed product information.
@@ -11,17 +12,19 @@ A dynamic e-commerce web application that i built with Svelte. The application f
 4. Product Details: Click on a product to view detailed information.
 
 ##**Usage**
- ###**Home Page**
+
+###**Home Page**
   - Displays a list of products.
   - Users can filter products by category and sort them by price.
   - Clicking on a product navigates to the detailed product view.
 
- ###**Product Detail Page**
+###**Product Detail Page**
   - Shows detailed information about the selected product.
   - Users can navigate back to the product list, with previously applied filters preserved.
 
 ###**Code Snippets**
- ##**Applying Filters and Sorting**
+
+##**Applying Filters and Sorting**
 
      ```
      function applyFilters() {
@@ -37,7 +40,7 @@ A dynamic e-commerce web application that i built with Svelte. The application f
   }
 
 
-  ##**Fetch products based on the selected category and update the products list.**
+##**Fetch products based on the selected category and update the products list.**
    
    ```
   async function fetchProducts(category = '') {
