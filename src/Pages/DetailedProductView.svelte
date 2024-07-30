@@ -4,9 +4,20 @@
   import { Link } from 'svelte-routing';
 
   let product = null;
+
+  /**
+   * Indicates whether the product data is currently being loaded.
+   * @type {boolean}
+   */
   let loading = true;
+
+   /**
+   * Stores error messages if an error occurs during data fetching.
+   * @type {string|null}
+   */
   let error = null;
 
+  
   onMount(async () => {
       const url = window.location.pathname;
       const id = url.split('/').pop(); 
@@ -24,6 +35,12 @@
          }
     });
 
+
+    /**
+   * Generates an array representing the rating stars for a given rating value.
+   * @param {number} rate 
+   * @returns {string[]} An array of strings indicating the star rating (e.g., ['filled', 'filled', 'filled', 'half', 'empty']).
+   */
   function getRatingStars(rate) {
     const totalStars = 5;
     const filledStars = Math.floor(rate);
@@ -40,9 +57,15 @@
 <main>
   {#if loading}
   <LoadingState/>
+  
   {:else if error}
       <p>Error: {error}</p>
   {:else}
+
+  <Link to="/" >
+    <button class="return-btn">Back to products</button>
+  </Link>
+
   <div class="product-detail">
         <div class="product-card">
             <div class="product-image">
@@ -80,7 +103,7 @@
            <button>Add to cart</button>
       </div>
   </div>
-        <Link to="/">Back to products</Link>
+        
   {/if}
 </main>
 
@@ -88,6 +111,13 @@
 
   
 <style>
+  .return-btn {
+    height: 40px;
+    border-radius: 5px;
+    background-color: #e6d9d9;
+    margin-top: 10px;
+    border: 0.5px solid #87b4db;
+  }
 
   .product-detail{
     display: flex;
@@ -106,7 +136,7 @@
     flex-direction: column;
     align-items: center; 
     text-align: center; 
-    margin-top: 80px;
+    margin-top: 50px;
     margin-right: 10px;
     background-color: #e6d9d9;
     }
@@ -147,6 +177,7 @@
     font-size: 18px;
     color: #000000;
     margin-bottom: 20px;
+    padding: 10px;
     }
     
   .info-block{
@@ -159,7 +190,7 @@
     flex-direction: column;
     align-items: center; 
     text-align: center; 
-    margin-top: 80px;
+    margin-top: 50px;
     margin-right: 10px;
     background-color: #e6d9d9;
     }
@@ -174,7 +205,7 @@
     flex-direction: column;
     align-items: center; 
     text-align: center; 
-    margin-top: 80px;
+    margin-top: 50px;
     background-color: #e6d9d9;
     }
 

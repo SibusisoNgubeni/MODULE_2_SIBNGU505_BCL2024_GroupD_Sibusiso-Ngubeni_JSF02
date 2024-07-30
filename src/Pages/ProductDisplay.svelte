@@ -3,15 +3,33 @@
   import Sorting from '../Components/Sorting.svelte';
   import CategoryFilter from '../Components/CategoryFilter.svelte';
   import { onMount } from 'svelte';
- 
 
+  /** 
+   * @type {Array}
+   */
   let products = [];
   let filteredProducts = [];
+
+  /**
+   *  @type {boolean} 
+   */
   let loading = true;
+
+  /** 
+   * @type {string | null} 
+   */
   let error = null;
+
+  /** 
+   * @type {string} 
+   */
   let currentCategory = '';
   let sortOption = '';
 
+  /**
+   * Fetch products based on the selected category and updates the products list.
+   * @param {string} [category=''] 
+   */
   async function fetchProducts(category = '') {
       const url = category
           ? `https://fakestoreapi.com/products/category/${category}`
@@ -31,6 +49,9 @@
       }
   }
 
+  /**
+   * Applies sorting to the list of products based on the applied sortOption.
+   */
   function applyFilters() {
       let filtered = [...products];
 
@@ -43,28 +64,38 @@
       filteredProducts = filtered;
   }
 
+ 
   function handleCategoryChange(event) {
       currentCategory = event.detail;
       fetchProducts(currentCategory);
   }
 
+  
   function handleSortChange(event) {
       sortOption = event.detail;
       applyFilters();
   }
 
+  /**
+   * Resets the category and sort options and fetches all products.
+   */
   function handleReset() {
       currentCategory = '';
       sortOption = '';
       fetchProducts(); 
   }
 
+  /**
+   * Handles product click events by navigating to the detailed product page.
+   * @param {number} id 
+   */
   function handleProductClick(id) {
       window.location.href = `/product/${id}`; 
   }
 
   onMount(() => fetchProducts());
 </script>
+
 
 <main>
   {#if loading}
@@ -117,7 +148,7 @@
      flex-direction: column;
      align-items: center; 
      text-align: center; 
-     margin-top: 80px;
+     margin-top: 50px;
     }
 
   .product-title {
