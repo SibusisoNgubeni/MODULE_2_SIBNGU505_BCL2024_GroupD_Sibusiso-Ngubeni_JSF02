@@ -1,9 +1,9 @@
 <script>
-  import { Link } from 'svelte-routing';
   import LoadingState from '../Components/LoadingState.svelte';
   import Sorting from '../Components/Sorting.svelte';
   import CategoryFilter from '../Components/CategoryFilter.svelte';
   import { onMount } from 'svelte';
+ 
 
   let products = [];
   let filteredProducts = [];
@@ -59,6 +59,10 @@
       fetchProducts(); 
   }
 
+  function handleProductClick(id) {
+      window.location.href = `/product/${id}`; 
+  }
+
   onMount(() => fetchProducts());
 </script>
 
@@ -72,20 +76,25 @@
       <CategoryFilter on:categoryChange={handleCategoryChange} />
       <div class="product-list">
           {#each filteredProducts as product}
-              <Link to={`/product/${product.id}`}>
-                  <div class="product-card">
-                      <div class="product-title">{product.title}</div>
-                      <div class="product-image">
-                          <img src="{product.image}" alt="{product.title}" class="product-image" />
-                      </div>
-                      <div class="product-price">$ {product.price}</div>
-                      <div class="product-category">{product.category}</div>
+              <div class="product-card" 
+              role="button"
+              on:click={() => handleProductClick(product.id)}
+                on:keypress={(e) => e.key === 'Enter' && handleProductClick(product.id)}
+                tabindex=0
+                aria-label={`View details for ${product.title}`}>
+
+                  <div class="product-title">{product.title}</div>
+                  <div class="product-image">
+                      <img src="{product.image}" alt="{product.title}" class="product-image" />
                   </div>
-              </Link>
+                  <div class="product-price">$ {product.price}</div>
+                  <div class="product-category">{product.category}</div>
+              </div>
           {/each}
       </div>
   {/if}
 </main>
+
 
 <style>
     .product-list{
