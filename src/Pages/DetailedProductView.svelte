@@ -55,7 +55,7 @@
 
       
     {/if}
-    <Link to="/">Bac to products</Link>
+    <Link to="/">Back to products</Link>
 </main>
   
 <style>

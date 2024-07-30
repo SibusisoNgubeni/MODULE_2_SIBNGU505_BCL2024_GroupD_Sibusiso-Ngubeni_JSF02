@@ -1,63 +1,67 @@
 <script>
-    
-    import { Link } from 'svelte-routing';
-    import LoadingState from '../Components/LoadingState.svelte';
-    import Sorting from '../Components/Sorting.svelte';
-    import { onMount } from 'svelte';
-    
-   
-  
-    let data = null;
-    let loading = true;
-    let error = null;
-  
-    
-    onMount(async () => {
+  import { Link } from 'svelte-routing';
+  import LoadingState from '../Components/LoadingState.svelte';
+  import Sorting from '../Components/Sorting.svelte';
+  import CategoryFilter from '../Components/CategoryFilter.svelte';
+  import { onMount } from 'svelte';
+
+  let products = [];
+  let filteredProducts = [];
+  let loading = true;
+  let error = null;
+
+  async function fetchProducts(category = '') {
+      const url = category
+          ? `https://fakestoreapi.com/products/category/${category}`
+          : 'https://fakestoreapi.com/products';
       try {
-        const response = await fetch('https://fakestoreapi.com/products');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        data = await response.json();
+          const response = await fetch(url);
+          if (!response.ok) {
+              throw new Error('Failed to fetch data');
+          }
+          products = await response.json();
+          filteredProducts = products;
       } catch (err) {
-        error = err.message || 'An error occurred';
+          error = err.message || 'An error occurred';
       } finally {
-        const LoadingTimeout = setTimeout(() => {
-        loading = false;
-      }, 2500);
+          loading = false;
       }
-    });
+  }
 
-    
+  function handleCategoryChange(event) {
+      const category = event.detail;
+      fetchProducts(category);
+  }
 
-    
-  </script>
-  
-  <main>
-    {#if loading}
-      <LoadingState/>
-    {:else if error}
+  onMount(() => fetchProducts());
+</script>
+
+<main>
+  {#if loading}
+      <LoadingState />
+  {:else if error}
       <p>Error: {error}</p>
-    {:else}
-     <Sorting/>
-    <div class="product-list">
-        {#each data as product}
-       <Link to="/1">
-         <div class="product-card">
-          <div class="product-title">{product.title}</div>
-          <div class="product-image"><img src="{product.image}" alt="product" class="product-image"/></div>
-          <div class="product-price">$ {product.price}</div>
-          <div class="product-category">{product.category}</div>
-        </div>
-      </Link>
-    
-        {/each}
-    </div>
-      
-    {/if}
-  </main>
-  
-  <style>
+  {:else}
+      <Sorting />
+      <CategoryFilter on:categoryChange={handleCategoryChange} />
+      <div class="product-list">
+          {#each filteredProducts as product}
+              <Link to={`/product/${product.id}`}>
+                  <div class="product-card">
+                      <div class="product-title">{product.title}</div>
+                      <div class="product-image">
+                          <img src="{product.image}" alt="{product.title}" class="product-image" />
+                      </div>
+                      <div class="product-price">$ {product.price}</div>
+                      <div class="product-category">{product.category}</div>
+                  </div>
+              </Link>
+          {/each}
+      </div>
+  {/if}
+</main>
+
+<style>
     .product-list{
         display: flex;
         flex-wrap: wrap;
@@ -106,4 +110,4 @@
     color: #777;
     }
 
-  </style>
+</style>

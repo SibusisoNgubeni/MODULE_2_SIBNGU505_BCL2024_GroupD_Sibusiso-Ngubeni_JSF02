@@ -8,7 +8,7 @@
 </script>
 <Header/>
 <Router>
-  <Route path="/1" component={DetailedProductView} />
+  <Route path="/product/:id" component={DetailedProductView} />
  <Route path="/" component={ProductDisplay}/>
 
 
