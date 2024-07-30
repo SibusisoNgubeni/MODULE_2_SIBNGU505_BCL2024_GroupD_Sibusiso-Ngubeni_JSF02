@@ -1,18 +1,11 @@
-<script>
-
-
-</script>
-
-<main>
-   <nav class="container">
+<nav class="container">
       <div>
            <img src="../src/assets/online-shop.png" class="logo" alt="Flowbite Logo">
            <span class="logo-text" >SwiftCart</span>
       </div>
+</nav>
 
-   </nav>
 
-</main>
 
 <style>
  

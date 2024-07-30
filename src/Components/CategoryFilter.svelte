@@ -1,6 +1,7 @@
 
 <script>
     import { createEventDispatcher, onMount } from 'svelte';
+    
     const dispatch = createEventDispatcher();
 
     let categories = [];
@@ -25,6 +26,3 @@
     {/each}
 </select>
 
-<style>
-    
-</style>

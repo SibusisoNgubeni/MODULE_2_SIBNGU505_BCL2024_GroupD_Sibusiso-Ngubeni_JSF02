@@ -74,19 +74,20 @@
   {:else}
       <Sorting on:sortChange={handleSortChange} on:reset={handleReset} />
       <CategoryFilter on:categoryChange={handleCategoryChange} />
+
       <div class="product-list">
           {#each filteredProducts as product}
               <div class="product-card" 
-              role="button"
-              on:click={() => handleProductClick(product.id)}
-                on:keypress={(e) => e.key === 'Enter' && handleProductClick(product.id)}
-                tabindex=0
-                aria-label={`View details for ${product.title}`}>
+                  role="button"
+                  on:click={() => handleProductClick(product.id)}
+                  on:keypress={(e) => e.key === 'Enter' && handleProductClick(product.id)}
+                  tabindex=0
+                  aria-label={`View details for ${product.title}`}>
 
                   <div class="product-title">{product.title}</div>
-                  <div class="product-image">
-                      <img src="{product.image}" alt="{product.title}" class="product-image" />
-                  </div>
+                    <div class="product-image">
+                       <img src="{product.image}" alt="{product.title}" class="product-image" />
+                    </div>
                   <div class="product-price">$ {product.price}</div>
                   <div class="product-category">{product.category}</div>
               </div>
@@ -97,50 +98,49 @@
 
 
 <style>
-    .product-list{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        justify-content: center;
-
+  .product-list{
+     display: flex;
+     flex-wrap: wrap;
+     gap: 16px;
+     justify-content: center;
     }
 
-    .product-card{
-        display: flex;
-        border: 1px solid black;
-        border-radius: 10px;
-        width: 350px;
-        height: 500px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-        text-align: center; 
-        margin-top: 80px;
+  .product-card{
+     display: flex;
+     border: 1px solid black;
+     border-radius: 10px;
+     width: 350px;
+     height: 500px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     transition: transform 0.2s;
+     display: flex;
+     flex-direction: column;
+     align-items: center; 
+     text-align: center; 
+     margin-top: 80px;
     }
 
-   .product-title {
+  .product-title {
     padding: 10px;
     font-size: 1.2em;
     margin-bottom: 10px;
     height: 60px;
     }
 
-   .product-image {
+  .product-image {
     width: 200px;
     height: 300px;
     object-fit: contain;
     margin-bottom: 10px;
     }
 
-   .product-price {
+  .product-price {
     font-size: 1.2em;
     color: #333;
     margin-bottom: 10px;
     }
 
-   .product-category {
+  .product-category {
     font-size: 0.9em;
     color: #777;
     }

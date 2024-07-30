@@ -4,10 +4,7 @@
   
 <main>
     <p>{message}</p>
-
 </main>
   
-<style>
-    
-</style>
+
   
